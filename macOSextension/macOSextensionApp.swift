@@ -25,7 +25,7 @@ struct macOSextensionApp: App {
             Toggle("启用右上角关闭", isOn: $monitor.isEnabled)
             Divider()
             SettingsLink {
-                Text("管理白名单...")
+                Text("管理白名单")
             }
             Divider()
             Button("退出") { NSApplication.shared.terminate(nil) }
