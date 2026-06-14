@@ -24,12 +24,20 @@ struct macOSextensionApp: App {
                      systemImage: monitor.isEnabled ? "xmark.square.fill" : "xmark.square") {
             Toggle("启用右上角关闭", isOn: $monitor.isEnabled)
             Divider()
-            SettingsLink {
-                Text("管理白名单...")
-            }
-            .simultaneousGesture(TapGesture().onEnded {
+            Button("管理白名单...") {
+                // 1) 临时切换到 .regular 以保证窗口能置前
+                if NSApp.activationPolicy() != .regular {
+                    NSApp.setActivationPolicy(.regular)
+                }
+                // 2) 激活 app（菜单关闭后生效）
                 NSApp.activate(ignoringOtherApps: true)
-            })
+                // 3) 打开 Settings 窗口
+                if #available(macOS 14, *) {
+                    NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+                } else {
+                    NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
+                }
+            }
             Divider()
             Button("退出") { NSApplication.shared.terminate(nil) }
                 .keyboardShortcut("q")

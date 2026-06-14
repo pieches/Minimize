@@ -7,6 +7,7 @@
 
 import SwiftUI
 import AppKit
+import Combine
 
 struct WhitelistSettingsView: View {
     @ObservedObject var whitelist: AppWhitelist
@@ -40,6 +41,17 @@ struct WhitelistSettingsView: View {
         .padding()
         .frame(width: 360)
         .onAppear(perform: refresh)
+        .onReceive(
+            NotificationCenter.default.publisher(for: NSWindow.willCloseNotification)
+                .receive(on: DispatchQueue.main)
+        ) { notification in
+            // 设置窗口关闭后，切回后台代理策略
+            if let window = notification.object as? NSWindow,
+               window.identifier?.rawValue.hasPrefix("com_apple_SwiftUI_Settings") == true ||
+               window.title == "管理白名单" || window.title == "Settings" {
+                NSApp.setActivationPolicy(.accessory)
+            }
+        }
     }
 
     /// 只列出常规App（过滤掉后台辅助进程），按名称排序
