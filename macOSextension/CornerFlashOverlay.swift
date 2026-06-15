@@ -33,10 +33,10 @@ final class CornerFlashOverlay {
         // 快速连续触发时，先收起上一个，避免叠加残留
         panel?.orderOut(nil)
 
-        let size: CGFloat = 64
+        let size: CGFloat = 30
         let frame = NSRect(
-            x: screen.frame.maxX - size - 4,
-            y: screen.frame.maxY - size - 4,
+            x: screen.frame.maxX - size,
+            y: screen.frame.maxY - size,
             width: size, height: size
         )
 
@@ -52,7 +52,7 @@ final class CornerFlashOverlay {
         let view = NSView(frame: NSRect(origin: .zero, size: frame.size))
         view.wantsLayer = true
         view.layer?.backgroundColor = style.color.cgColor
-        view.layer?.cornerRadius = 16
+        view.layer?.cornerRadius = 10
         window.contentView = view
 
         window.orderFrontRegardless()
