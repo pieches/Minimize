@@ -17,9 +17,9 @@ final class AppGestureConfig: ObservableObject {
 
         var label: String {
             switch self {
-            case .ignore:   return "不响应"
-            case .minimize: return "最小化"
-            case .close:    return "关闭"
+            case .ignore:   return "无操作"
+            case .minimize: return "最小化App"
+            case .close:    return "关闭App"
             }
         }
     }
