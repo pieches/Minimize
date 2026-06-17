@@ -35,14 +35,14 @@ struct macOSextensionApp: App {
     var body: some Scene {
         MenuBarExtra(monitor.isEnabled ? "已启用" : "已暂停",
                      systemImage: monitor.isEnabled ? "xmark.square.fill" : "xmark.square") {
-            Toggle("启用右上角关闭", isOn: $monitor.isEnabled)
+            Toggle("启用", isOn: $monitor.isEnabled)
             Divider()
             SettingsLink {
-                Text("设置...")
+                Text("设置")
             }
-            Button("重新引导设置") {
-                Self.openSetupWindow(with: gestureConfig)
-            }
+//            Button("重新引导设置") {
+//                Self.openSetupWindow(with: gestureConfig)
+//            }
             Divider()
             Button("退出") { NSApplication.shared.terminate(nil) }
                 .keyboardShortcut("q")

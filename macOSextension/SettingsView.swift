@@ -16,7 +16,7 @@ struct SettingsView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("为每个 App 选择右上角右键手势行为")
+            Text("选择右上角右键单击手势行为")
                 .font(.callout)
                 .foregroundStyle(.secondary)
 

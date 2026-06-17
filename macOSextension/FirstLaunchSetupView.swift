@@ -25,7 +25,7 @@ struct FirstLaunchSetupView: View {
                     .padding(.top, 24)
                 Text("欢迎使用 Minimize")
                     .font(.title2).fontWeight(.semibold)
-                Text("为每个 App 选择右上角右键手势行为\n可随时在设置中修改")
+                Text("选择右上角右键单击手势行为")
                     .font(.subheadline).foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
                     .lineSpacing(4)
